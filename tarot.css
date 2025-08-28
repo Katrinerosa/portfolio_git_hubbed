@@ -1,0 +1,150 @@
+body {
+  background: rgb(55, 49, 49);
+  font-family: sans-serif;
+  padding: 60px 50px;
+  padding-top: 100px;
+}
+
+#deck {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.card {
+  width: 300px;
+  height: 450px;
+  background-color: #fff;
+  padding: 7px;
+  border-radius: 10px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow: auto;
+  text-align: center;
+}
+
+.card-back {
+  background-image: url("img/bagsidetarot.png"); /* ← brug mit eget billede her */
+  background-size: cover;
+  background-position: center;
+  color: transparent;
+}
+
+.card-front {
+  background-color: white;
+  color: black;
+  transform: rotateY(180deg);
+}
+#card-info {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: sans-serif;
+  line-height: 1.4;
+}
+#three-cards {
+  position: absolute;
+  top: 193px; /* justér denne hvis kortene ligger for højt/lavt */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+}
+
+.three-card {
+  width: 300px;
+  height: 450px;
+  background: white;
+  border-radius: 10px;
+  
+  box-shadow: 0 0 10px rgba(227, 213, 213, 0.267);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.fade {
+  transition: opacity 0.5s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+#button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cake-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #f5eee6;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #f5eee6;
+  font-family: "Neue Montreal", sans-serif;
+  font-size: 18px;
+  background: transparent;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.cake-btn:hover {
+  background: #f5eee6;
+  color: #12004f;
+}
+canvas#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  #three-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #three-cards .card {
+    margin-bottom: 20px;
+  }
+}

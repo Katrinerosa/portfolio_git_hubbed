@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katrine Rosa Beck Portfolio</title>
+  <link rel="icon" href="img/icons/katrine rosa beck.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <!-- Fontshare: Neue Montreal & Migra -->
+  <link href="https://api.fontshare.com/v2/css?f[]=neue-montreal@400&f[]=migra@400&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="tarot.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<canvas id="particle-canvas"></canvas>
+
+   <nav>
+  <div class="left"><a href="index.html">Katrine Rosa</a></div>
+  <div class="center">Creative Developer & Designer</div>
+  <div class="right">
+    <a href="index.html#works">Works</a>
+    <a href="illustrations.html">Illustrations</a>
+    <a href="index.html#about">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+  <main>
+
+    <div id="button-container">
+  <button id="spread-button" class="cake-btn">Ønsker du mere?</button>
+  <button id="single-button" class="cake-btn" style="display:none;">Et kort reading</button>
+</div>
+
+    <div id="deck">
+        <div class="card" id="draw-card">
+            <div class="card-inner">
+                <div class="card-back"></div>
+                <div class="card-front"></div>
+            </div>
+        </div>
+    </div>
+    <div id="card-info"></div>
+
+
+    <div id="three-cards"></div>
+
+    <script src="tarot.js"></script>
+  </main>
+  <footer>
+    <p>© 2025 Katrine Rosa Beck – Skabt med kærlighed og kaffe ☕</p>
+  </footer>
+   <div class="tab-bar">
+  <a href="index.html" class="tab-link active">Hjem</a>
+  <a href="illustrations.html" class="tab-link">Illustrationer</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#contact">Kontakt</a>
+</div>
+</body>
+
+</html>

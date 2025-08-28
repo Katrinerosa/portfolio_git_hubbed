@@ -1,0 +1,63 @@
+<!-- contact.html -->
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kontakt – Katrine Rosa</title>
+  <link rel="stylesheet" href="/style.css">
+  <meta name="description" content="Kontakt Katrine Rosa – illustration, tarot og digitale lærermidler.">
+</head>
+<body>
+  <nav>
+    <a href="index.html">Katrine Rosa</a>
+    <div class="center">Creative Developer & Designer</div>
+    <div class="right">
+      <a href="index.html#works">Works</a>
+      <a href="illustrations.html" aria-current="page">Illustrations</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Kontakt</h1>
+    <p class="lead">Jeg svarer normalt inden for 1–2 hverdage.</p>
+
+    <form name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="kontakt">
+      <!-- honeypot -->
+      <p class="visually-hidden">
+        <label>Efterlad dette tomt: <input name="bot-field"></label>
+      </p>
+
+      <div class="grid">
+        <p>
+          <label for="navn">Navn</label>
+          <input id="navn" name="navn" required autocomplete="name">
+        </p>
+        <p>
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </p>
+      </div>
+
+      <p>
+        <label for="emne">Emne</label>
+        <input id="emne" name="emne" placeholder="Tarot / Illustration / Praktik / Andet">
+      </p>
+
+      <p>
+        <label for="besked">Besked</label>
+        <textarea id="besked" name="besked" required placeholder="Fortæl kort hvad du har i tankerne…"></textarea>
+      </p>
+
+      <button type="submit">Send</button>
+      <p class="muted">Eller mail: <a href="mailto:hej@katrinerosa.com">hej@katrinerosa.com</a></p>
+    </form>
+  </main>
+
+  <footer>© <span id="y"></span> Katrine Rosa</footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
