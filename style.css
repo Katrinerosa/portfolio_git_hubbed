@@ -41,7 +41,7 @@ nav {
   background: transparent;
   z-index: 1000;
   transition: background 0.3s ease;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
+  border-bottom: 2.5px solid rgba(255,255,255,0.2);
 }
 nav.scrolled {
   background: rgba(0,0,0,0.6);
