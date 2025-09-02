@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/style.css">
   <meta name="description" content="Kontakt Katrine Rosa – illustration, tarot og digitale lærermidler.">
 </head>
-<body>
+<body class="contact">
   <nav>
     <a href="index.html">Katrine Rosa</a>
     <div class="center">Creative Developer & Designer</div>
@@ -44,7 +44,7 @@
 
       <p>
         <label for="emne">Emne</label>
-        <input id="emne" name="emne" placeholder="Tarot / Illustration / Praktik / Andet">
+        <input id="emne" name="emne" placeholder="Webudvikling /Tarot / Illustration / Praktik / Andet">
       </p>
 
       <p>
@@ -57,7 +57,19 @@
     </form>
   </main>
 
-  <footer>© <span id="y"></span> Katrine Rosa</footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+    <!-- Footer -->
+  <footer>
+    <p>© 2025 Katrine Rosa Beck – Skabt med kærlighed og kaffe ☕</p>
+  </footer>
+
+  <!-- Tab bar til mobil -->
+  <div class="tab-bar">
+    <a href="index.html" class="tab-link">Hjem</a>
+    <a href="illustrations.html" class="tab-link">Illustrationer</a>
+    <a href="index.html#about" class="tab-link">About</a>
+    <a href="contact.html" class="tab-link active">Kontakt</a>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>

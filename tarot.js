@@ -250,3 +250,47 @@ document.getElementById("single-button").addEventListener("click", () => {
   document.getElementById("single-button").style.display = "none";
   document.getElementById("spread-button").style.display = "block";
 });
+
+// STARFIELD ANIMATION (noo måger)
+(function() {
+  const canvas = document.getElementById('particle-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w = window.innerWidth;
+  let h = window.innerHeight;
+  canvas.width = w;
+  canvas.height = h;
+
+  // Stars
+  const starCount = 120;
+  const stars = Array.from({length: starCount}, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 1.2 + 0.5,
+    blink: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.02 + 0.01
+  }));
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    // Draw stars
+    stars.forEach(star => {
+      star.blink += star.speed;
+      const alpha = 0.6 + 0.4 * Math.sin(star.blink);
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+  });
+
+  animate();
+})();

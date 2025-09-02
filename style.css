@@ -1,6 +1,17 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+/* Fade overlay til main */
+#main-fade-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+/* Import fonts moved to HTML <head> to reduce CSS blocking */
 
 /* CSS Variables */
 :root {
@@ -8,6 +19,7 @@
   --black: #000;
   --accent-light: #f5eee6;
   --accent-blue: #92d5f6;
+  --accent-red: #d64a3a;
   --text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
@@ -41,7 +53,7 @@ nav {
   background: transparent;
   z-index: 1000;
   transition: background 0.3s ease;
-  border-bottom: 2.5px solid rgba(255,255,255,0.2);
+  border-bottom: 2.5px solid rgba(215, 9, 9, 0.2);
 }
 nav.scrolled {
   background: rgba(0,0,0,0.6);
@@ -87,6 +99,21 @@ nav a:hover {
   background: url("img/kvindeienfantasy.png") center 45% / cover no-repeat;
   color: var(--white);
 }
+
+/* Fade overlay til hero */
+#hero-fade-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+  opacity: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
 .hero::after {
   content: "";
   position: absolute;
@@ -96,9 +123,10 @@ nav a:hover {
 }
 .hero-text {
   position: relative;
-  z-index: 2;
+  z-index: 20;
   max-width: 700px;
   margin-left: 5%;
+  text-align: center;
 }
 .hero-text h1 {
   font-family: "Migra", serif;
@@ -252,38 +280,49 @@ footer {
 
 /* === ILLUSTRATIONS GALLERY – GENINDSAT GAMMEL OPSÆTNING === */
 .illustrations-gallery {
+  display: block; /* columns for masonry effect */
   column-count: 3;
-  column-gap: 1.5rem;
-  padding: 8rem 2rem 4rem;
+  column-gap: 1rem;
+  padding: 0 1rem 3rem;
   background-color: #000;
 }
 
 .illustrations-gallery img {
-  width: 100%;
-  margin-bottom: 1.5rem;
-  border-radius: 12px;
   display: block;
+  width: 100%;
+  height: auto; /* brug naturlig højde for skarphed uden opskalering */
+  margin: 0 0 1rem; /* vertikal afstand mellem items */
+  border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  background: #000;
+  transition: transform 0.3s ease;
+  opacity: 1;
+  content-visibility: auto;
   break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
 }
 
-.illustrations-gallery img:hover {
-  transform: scale(1.02);
-  opacity: 0.95;
+.illustrations-gallery img { cursor: zoom-in; }
+.illustrations-gallery img:hover { opacity: 0.98; }
+.illustrations-gallery img.popped {
+  transform: scale(1.05);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  cursor: zoom-out;
 }
 
 /* Mobil: én kolonne */
+@media (max-width: 1000px) {
+  .illustrations-gallery { column-count: 2; }
+}
 @media (max-width: 600px) {
-  .illustrations-gallery {
-    column-count: 1;
-    padding: 6rem 1rem 3rem;
-  }
+  .illustrations-gallery { column-count: 1; padding: 6rem 1rem 3rem; }
 }
 /* ==== Illustrations page layout via <main> ==== */
 .illustrations-main {
-  
-  padding-top: 100px; 
+  padding-top: 80px !important;
 }
 
 .illustrations-main > h2 {
@@ -294,15 +333,13 @@ footer {
 
 .illustrations-main > p {
   margin: 0 2rem 2rem;
-  max-width: 70ch;
+  max-width: 78ch;
   line-height: 1.7;
   color: #f5f5f5;
 }
 
 
-.illustrations-gallery {
-  padding: 0 2rem 4rem;
-}
+
 
 /* mobil: nav skjules iCSS ved <=768px, fjern top-padding */
 @media (max-width: 768px) {
@@ -331,16 +368,16 @@ footer {
 }
 
 @media (max-width: 768px) {
-  nav { display: none; }
+  nav { display: none !important; }
   .tab-bar { display: flex; }
   .oplev-box { width: 100vw; margin-bottom: 2rem; }
 }
 
 @media (max-width: 600px) {
-  .hero { background-position: center; background-size: contain; }
+  .hero { background-position: center; background-size: cover; min-height: 70vh; height: auto; }
   .hero-text h1 { font-size: 2rem; }
   .hero-text h2 { font-size: 1rem; }
-  .about { padding: 3rem 2vw; }
+  .about { padding: 2rem 2vw; }
   .about-left img { max-width: 90vw; }
   .cake-heading { font-size: 2rem; }
 }
@@ -358,7 +395,7 @@ nav {
   background: transparent;
   z-index: 1000;
   transition: background 0.3s ease;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
+  border-bottom: 2.5px solid rgba(255,255,255,0.2);
 }
 nav.scrolled {
   background: rgba(0,0,0,0.6);
@@ -403,9 +440,11 @@ main.container {
 }
 
 main.container h1 {
-  font-family: "Playfair Display", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1em;
+  color: black;
 }
 
 .lead {
@@ -420,7 +459,7 @@ form {
   gap: 1.5rem;
   background: rgba(255,255,255,0.05);
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.5);
 }
 
@@ -428,24 +467,24 @@ label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.4rem;
-  font-family: "Playfair Display", serif;
+  font-family: "Arial", sans-serif;
 }
 
 input, textarea {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 8px;
+  border: 2px solid rgba(18, 17, 17, 0.2);
+  
   font-size: 1rem;
-  font-family: inherit;
-  background: #111;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #e8e6e6;
   color: var(--white);
 }
 
 input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 2px rgba(146,213,246,0.3);
+  outline: black;
+  border-color: black;
+  box-shadow: 0 0 0 2px rgba(57, 58, 58, 0.3);
 }
 
 textarea {
@@ -454,8 +493,8 @@ textarea {
 }
 
 button[type="submit"] {
-  background: var(--accent-blue);
-  color: var(--black);
+  background: var(--accent-red);
+  color: var(--white);
   border: none;
   padding: 0.9rem 1.4rem;
   border-radius: 8px;
@@ -466,7 +505,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #7ac4e8;
+  background: #e02525;
   transform: translateY(-2px);
 }
 
@@ -474,4 +513,87 @@ button[type="submit"]:hover {
   font-size: 0.9rem;
   color: #aaa;
   margin-top: 0.5rem;
+}
+
+/* Contact page specific tweaks */
+body.contact {
+  background: #bdbdbd; /* lys grå som referencebilledet */
+}
+
+body.contact main.container {
+  color: #242222;               /* tydelig tekst over den lyse baggrund */
+  padding: 5rem 1rem 1.25rem;   /* endnu strammere vertikal padding */
+  max-width: 1100px;            /* bredere kontaktområde */
+}
+
+body.contact main.container h1 {
+body.contact .lead {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+  margin-bottom: 0.3rem;
+  margin-top: 1.5rem;
+  
+  gap: 0.6rem;
+  padding: 0.85rem;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem; 
+  /* mindre luft under formen */
+  gap: 0.6rem;
+  padding: 0.85rem;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem; /* mindre luft under formen */
+}
+
+body.contact label { color: #383737; margin-bottom: 0.25rem; }
+body.contact .muted { color: #484646; }
+body.contact .muted a {
+  color: #484646;
+  text-decoration: underline;
+}
+body.contact input,
+body.contact textarea { padding: 0.9rem 1rem; }
+body.contact textarea { min-height: 130px; }
+
+/* Gør første række (navn/e-mail) til to kolonner på bredere skærme */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* Hjælpeklasse til honeypot-feltet */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+/* Responsiveness for contact page */
+@media (max-width: 768px) {
+  body.contact main.container {
+    padding: 1rem 1rem 3.25rem; /* kompakt, med plads til tab-bar */
+    max-width: 100%;
+  }
+  body.contact form { padding: 0.6rem; gap: 0.45rem; margin-bottom: 0.75rem; }
+  .grid { gap: 0.5rem; }
+  body.contact label { margin-bottom: 0.15rem; }
+  body.contact input,
+  body.contact textarea { padding: 0.75rem 0.9rem; }
+  body.contact button[type="submit"] { width: 100%; }
+}
+
+/* Mindre footer-padding på mobil for hele sitet */
+@media (max-width: 768px) {
+  footer { padding: 1rem 0 3rem; }
+}
+
+@media (max-width: 480px) {
+  body.contact main.container h1 { font-size: 2rem; }
 }
